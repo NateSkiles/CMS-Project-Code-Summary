@@ -52,51 +52,50 @@ For two weeks, I joined a project building a content management system (CMS) for
  With this model I used EntityFramework to scaffold CRUD pages. These pages gave us the basic functionailty of a comment seciton. 
  
  ### Creating Partial View
+ Afer creating the model I made a partial view, to allow me to call my comment section on other web pages. More specifically, allowing me to add a comment section in multiple blog posts or different places. Below is the code used to to call my partial view. 
  
  ```html+razor
- <p>
-   @Html.ActionLink("Create New", "Create")
- </p>
- <table class="table">
-   <tr>
-     <th>
-       @Html.DisplayNameFor(model => model.Message)
-     </th>
-     <th>
-       @Html.DisplayNameFor(model => model.CommentDate)
-     </th>
-     <th>
-       @Html.DisplayNameFor(model => model.Likes)
-     </th>
-     <th>
-       @Html.DisplayNameFor(model => model.Dislikes)
-     </th>
-     <th></th>
-   </tr>
-   @foreach (var item in Model)
-   {
-     <tr>
-       <td>
-         @Html.DisplayFor(modelItem => item.Message)
-       </td>
-       <td>
-         @Html.DisplayFor(modelItem => item.CommentDate)
-       </td>
-       <td>
-         @Html.DisplayFor(modelItem => item.Likes)
-       </td>
-       <td>
-         @Html.DisplayFor(modelItem => item.Dislikes)
-       </td>
-       <td>
-         @Html.ActionLink("Edit", "Edit", new { id = item.CommentId }) |
-         @Html.ActionLink("Details", "Details", new { id = item.CommentId }) |
-         @Html.ActionLink("Delete", "Delete", new { id = item.CommentId })
-       </td>
-     </tr>
-   }
+ @{ 
+   Html.RenderPartial("_Comments");
+ }
  ```
  
+ ```html+razor
+
+ <div class="row">
+     <div class="col">
+         <span class="comment-author">@item.Author</span>
+         <span class="time-since">@item.TimeAgo()</span>
+     </div>
+ </div>
+
+ @* Comment message body *@
+ <div class="row">
+     <div class="col-lg-10 mx-auto mt-2">
+         <div class="commment-body">
+             <p>@item.Message</p>
+         </div>
+     </div>
+ </div>
+
+ @* Comment like *@
+ <div class="row">
+     <div class="col- mx-1">
+         <button class="btn btn-sm comment-upvote" id="comment-upvote" onclick=upvote(@item.CommentId)>
+             <i class="fa fa-thumbs-up fa-lg text-primary"></i>
+         </button>
+         <label class="comment-likes" data-commentId="@item.CommentId">@item.Likes</label>
+     </div>
+
+     @* Comment Dislike *@
+     <div class="col- mx-1">
+         <button class="btn btn-sm comment-downvote" id="comment-downvote" onclick=downvote(@item.CommentId)>
+             <i class="fa fa-thumbs-down fa-lg text-primary"></i>
+         </button>
+         <label class="comment-dislikes" data-commentId="@item.CommentId">@item.Dislikes</label>
+     </div>
+ </div>
+ ```
  ### Like/Dislike Feature
  * Implementation
  
