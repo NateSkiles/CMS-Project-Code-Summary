@@ -98,13 +98,13 @@ For two weeks, I joined a project building a content management system (CMS) for
  ```
  ### Like/Dislike Feature
  * Implementation
- 
+ -- Work In Progress --
  * Ratio Bar
- 
+ -- Work In Progress --
  ### Delete Comment & Comment Moderator
- 
+  -- Work In Progress --
  ### Link Comment To Blog Post 
- 
+  -- Work In Progress --
  ## Skills Aquired
- 
+  -- Work In Progress --
  
