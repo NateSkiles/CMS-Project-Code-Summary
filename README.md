@@ -46,7 +46,7 @@ For two weeks, I joined a project building a content management system (CMS) for
  With this model I used EntityFramework to scaffold CRUD pages. These pages gave us the basic functionailty of a comment seciton. 
  
  ### Creating Partial View
- Afer creating the model I made a partial view, to allow me to call my comment section on other web pages. More specifically, allowing me to add a comment section in multiple blog posts or different places. Below is the code used to to call my partial view. 
+ Afer creating the model I made a partial view to allow me to call my comment section on other web pages. More specifically, allowing me to add a comment section in multiple blog posts or different places. Below is the code used to to call my partial view. 
  
  ```html+razor
  @{ 
