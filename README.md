@@ -95,92 +95,89 @@ For two weeks, I joined a project building a content management system (CMS) for
  -- Work In Progress --
 ```c#
 public string LikeRatio()
-		{
-			double maximum = Likes + Dislikes;
-			string ratio = (Likes / maximum).ToString("0.00%");
+{
+	double maximum = Likes + Dislikes;
+	string ratio = (Likes / maximum).ToString("0.00%");
 
-			return ratio;
-		}
+	return ratio;
+}
 ```
  * Ratio Bar
  -- Work In Progress --
 ```html+razor
 <div class="row">
-						<div class="col mr-auto pt-1">
-							<div class="progress comments-progress">
-								<div class="progress-bar bg-success" data-commentId="@item.CommentId" role="progressbar" style="width: @item.LikeRatio();" aria-valuemin="0" aria-valuemax="100"></div>
-							</div>
-						</div>
-					</div>
+	<div class="col mr-auto pt-1">
+		<div class="progress comments-progress">
+			<div class="progress-bar bg-success" data-commentId="@item.CommentId" role="progressbar" style="width: @item.LikeRatio();" aria-valuemin="0" aria-valuemax="100"></div>
+		</div>
+	</div>
+</div>
 ```
  ### Delete Comment & Comment Moderator
   -- Work In Progress --
   ```html+razor
-  <div class="row ml-auto mt-2 justify-content-end">
-						<div class="comment-reply col- mx-1">
-							<button class="btn btn-primary btn-sm">
-								Reply @* @Html.Action()    ADD IMPLEMENTATION!!! *@
-							</button>
-						</div>
-						<div class="comment-edit col- mx-1">
-							@Html.ActionLink(
-							"Edit", "Edit", "Comment", routeValues: new { id = item.CommentId }, htmlAttributes: new
-								{
-									@class = "btn btn-primary btn-sm",
-									@role = "button"
-							})
-						</div>
-						<div class="comment-trash col- mx-1">
-							<button type="button" class="btn btn-def fa fa-trash" data-toggle="modal" data-target="#myModal" onclick="passCommentId(@item.CommentId)"></button>
-						</div>
-					</div>
+<div class="row ml-auto mt-2 justify-content-end">
+	<div class="comment-reply col- mx-1">
+		<button class="btn btn-primary btn-sm">
+		Reply @* @Html.Action()    ADD IMPLEMENTATION!!! *@
+		</button>
+	</div>
+	<div class="comment-edit col- mx-1">
+		@Html.ActionLink(
+			"Edit", "Edit", "Comment", routeValues: new { id = item.CommentId }, htmlAttributes: new { 
+			@class = "btn btn-primary btn-sm", @role = "button"})
+	</div>
+	<div class="comment-trash col- mx-1">
+	<button type="button" class="btn btn-def fa fa-trash" data-toggle="modal" data-target="#myModal" onclick="passCommentId(@item.CommentId)"></button>
+	</div>
+</div>
   ```
   * Delete Modal
 ```html+razor
 <div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
+	<div class="modal-dialog">
 
-			@*Modal content*@
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title mx-auto">Delete Comment</h4>
-				</div>
-				<div class="modal-body">
-					<p>Are you sure you want to delete this post?</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button class="btn btn-trash btn-default fa fa-trash" data-dismiss="modal"></button>
-				</div>
+		@*Modal content*@
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close ml-0" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title mx-auto">Delete Comment</h4>
 			</div>
-
+			<div class="modal-body">
+				<p>Are you sure you want to delete this post?</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button class="btn btn-trash btn-default fa fa-trash" data-dismiss="modal"></button>
+			</div>
 		</div>
+
 	</div>
+</div>
 ```
 ```c#
- [HttpPost]
- public async Task<JsonResult> Delete(int id)
- {
-  Comment comment = await db.Comments.FindAsync(id);
-  db.Comments.Remove(comment);
-  db.SaveChanges();
-  return Json(new { success = true, id = comment.CommentId });
- }
+[HttpPost]
+public async Task<JsonResult> Delete(int id)
+{
+	Comment comment = await db.Comments.FindAsync(id);
+	db.Comments.Remove(comment);
+	db.SaveChanges();
+	return Json(new { success = true, id = comment.CommentId });
+}
 ```
  ### Link Comment To Blog Post 
   -- Work In Progress --
   ```html+razor
-  <div class="row p-5">
-			<div class="col-md-12">
-				<h2 class="text-center cms-text-dark">Comments</h2>
-			</div>
-			<div class="col-md-12">
-   @{
-     @Html.Action("Comments", "Comment", new { id = item.BlogPostID })
-   }
-			</div>
-		</div>
+<div class="row p-5">
+	<div class="col-md-12">
+		<h2 class="text-center cms-text-dark">Comments</h2>
+	</div>
+	<div class="col-md-12">
+	@{
+		@Html.Action("Comments", "Comment", new { id = item.BlogPostID })
+	}
+	</div>
+</div>
   ```
  ## Skills Aquired
   -- Work In Progress --
