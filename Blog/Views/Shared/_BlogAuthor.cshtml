@@ -1,0 +1,106 @@
+﻿@model TheatreCMS3.Areas.Blog.Models.BlogAuthor
+
+@{ 
+    string authorTabId = $"author-tab-{Model.BlogAuthorId}";
+    string blogTabId = $"blog-tab-{Model.BlogAuthorId}";
+    string contactTabId = $"contact-tab-{Model.BlogAuthorId}";
+    string twitterTabId = $"twitter-tab-{Model.BlogAuthorId}";
+
+    string authorContentId = $"author-content-{Model.BlogAuthorId}";
+    string blogContentId = $"blog-content-{Model.BlogAuthorId}";
+    string contactContentId = $"contact-content-{Model.BlogAuthorId}";
+    string twitterContentId = $"twitter-content-{Model.BlogAuthorId}"; 
+}
+
+<div class="AuthorBtnContainer">
+    <div class="AuthorBtnPlacement pt-1 justify-content-center">
+        <ul class="nav nav-pills justify-content-center" role="tablist">
+            <li class="nav-item" role="presentation">
+                <a class="nav-link active" id="@authorTabId" href="@($"#{authorContentId}")" data-toggle="pill" role="tab" aria-controls="@authorContentId" aria-selected="true">Author Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="@blogTabId" href="@($"#{blogContentId}")" data-toggle="pill" role="tab" aria-controls="@blogContentId" aria-selected="false">Blog Post</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="@contactTabId" href="@($"#{contactContentId}")" data-toggle="pill" role="tab" aria-controls="@contactContentId" aria-selected="false">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="@twitterTabId" href="@($"#{twitterContentId}")" data-toggle="pill" role="tab" aria-controls="@twitterContentId" aria-selected="false">Twitter</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!----------------------top buttons------------------->
+<div class="border-0 card text-center">
+    <div>
+        <div class="row m-3">
+            <!---------------------Portrait--------------------->
+            <div class="col-lg-4">
+                <img src="https://via.placeholder.com/250x300.jpeg?text=Author+Portrait" alt="Author Portrait">
+            </div>
+            <!---------------------End Portrait--------------------->
+            <div class="col-lg-8">
+                <div class="tab-content" id="@($"tabContent-{Model.BlogAuthorId}-pills")">
+                    <div class="AuthorDetails tab-pane active show" id="@authorContentId" role="tabpanel" aria-labelledby="@authorTabId">
+                        <h5 class="card-title">
+                            @Html.DisplayFor(model => model.Name)
+
+                            <!---------------------------social media icons------------------------------->
+                            <span style="float:right">
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>&nbsp;
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                            </span>
+                            <!--------------------------end social media icons------------------------------>
+                        </h5>
+
+                        <p class="card-text">@Html.DisplayFor(model => model.Bio)</p>
+                        <div class="row">
+                            <div class="col">
+                                <p><strong>Joined Date</strong></p>
+                                <p>@Html.DisplayFor(model => model.Joined)</p>
+                            </div>
+                            <div class="col">
+                                <p><strong>Left Date</strong></p>
+                                <p>@Html.DisplayFor(model => model.Left)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="AuthorDetails tab-pane" id="@blogContentId" role="tabpanel" aria-labelledby="@blogTabId">
+                        <h5 class="card-title">Post</h5>
+                        <p class="card-text">
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                            Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+                        </p>
+                    </div>
+                    <div class="AuthorDetails tab-pane" id="@contactContentId" role="tabpanel" aria-labelledby="@contactTabId">
+                        (Implement in future stories)
+                    </div>
+                    <div class="AuthorDetails tab-pane" id="@twitterContentId" role="tabpanel" aria-labelledby="@twitterTabId">
+                        (Implement in future stories)
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-----------------Edit button------------------->
+    <div>
+        <a href="@Url.Action("Delete", "BlogAuthors", new { id = Model.BlogAuthorId })" class="btn BtnAuthorDelete">
+            <i class="fas fa-trash"></i>
+        </a>
+        <a href="@Url.Action("Edit", "BlogAuthors", new { id = Model.BlogAuthorId })" class="btn BtnAuthorEdit">
+            <i class="fas fa-edit"></i>
+            <span>
+                <strong>Edit</strong>
+            </span>
+        </a>
+    </div>
+    <!-----------------End Edit button------------------->
+
+</div>
+

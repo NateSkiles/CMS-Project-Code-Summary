@@ -1,0 +1,78 @@
+﻿@model TheatreCMS3.Areas.Blog.Models.BlogAuthor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BlogAuthor</h4>
+    <hr />
+    <!---------------------------------------------------------------------->
+    <div class="AuthorBtnContainer">
+        <div class="AuthorBtnPlacement">
+            <button onclick="btnAuthorDetails()" class="button BtnAuthor" id="BtnAuthorDetails">Author Details</button>
+            <button onclick="btnAuthorPost()" class="button BtnAuthor" id="BtnAuthorPost">Blog Post</button>
+            <button onclick="btnAuthorContact()" class="button BtnAuthor" id="BtnAuthorContact">Contact</button>
+            <button onclick="btnAuthorTwitter()" class="button BtnAuthor" id="BtnAuthorTwitter">Twitter</button>
+        </div>
+    </div>
+    <!----------------------top buttons------------------->
+    <div class="border-0 card text-center">
+        <div>
+            <div class="row m-3">
+                <!---------------------Portrait--------------------->
+                <div class="col-lg-4">
+                    <img src="https://via.placeholder.com/250x300.jpeg?text=Author+Portrait" alt="Author Portrait">
+                </div>
+                <!---------------------End Portrait--------------------->
+                <div class="col-lg-8">
+                    <div style="display:none" id="ContentAuthorDetails">
+                        <h5 class="card-title AuthorDetails">
+                            @Html.DisplayFor(model => model.Name)
+
+                            <!---------------------------social media icons------------------------------->
+                            <span style="float:right">
+                                <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>&nbsp;
+                                <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                            </span>
+                            <!--------------------------end social media icons------------------------------>
+                        </h5>
+
+                        <p class="card-text AuthorDetails">@Html.DisplayFor(model => model.Bio)</p>
+                        <div class="row">
+                            <div class="col">
+                                <p class="AuthorDetails"><b>Joined Date</b></p>
+                                <p class="AuthorDetails">@Html.DisplayFor(model => model.Joined)</p>
+                            </div>
+                            <div class="col">
+                                <p class="AuthorDetails"><b>Left Date</b></p>
+                                <p class="AuthorDetails">@Html.DisplayFor(model => model.Left)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:none" class="AuthorDetails" id="ContentAuthorPost">
+                        <h5 class="card-title">Post</h5>
+                        <p class="card-text">Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum </p>
+                    </div>
+                    <div style="display:none" class="AuthorDetails" id="ContentAuthorContact">(Implement in future stories)</div>
+                    <div style="display:none" class="AuthorDetails" id="ContentAuthorTwitter">(Implement in future stories)</div>
+                    <br />
+                </div>
+            </div>
+        </div>
+        <!-----------------Edit button------------------->
+        <div>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.BlogAuthorId }, new { @class = "BtnAuthorEdit" })
+        </div>
+        <!-----------------End Edit button------------------->
+
+    </div>
+</div>
+<!----------------------------turn on details when page loads------------------------------------------>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        document.getElementById("BtnAuthorDetails").click();
+    });
+</script>
